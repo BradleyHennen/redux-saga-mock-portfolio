@@ -31,10 +31,21 @@ function* getProjectList(action) {
     }
 }
 
-
+function* addProject (action) {
+    console.log('In addProject Saga', action);
+    try{
+        yield axios.post('/portfolio', action.payload);
+        yield put ({type: 'GET_PROJECTS'})
+    }
+    catch (error) {
+        console.log(`couldn't add new project`, error);
+        alert(`Sorry, couldn't add your project.  Try again later.`); 
+    }
+}
 
 function* rootSaga() {
-    yield takeEvery('GET_PROJECTS', getProjectList)
+    yield takeEvery('GET_PROJECTS', getProjectList);
+    yield takeEvery('ADD_PROJECT', addProject);
 }
 
 //----REDUCERS----

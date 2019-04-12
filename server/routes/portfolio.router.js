@@ -6,9 +6,9 @@ router.post('/', (req, res) => {
     let project = req.body;
     console.log('Post project', project);
     
-    let sqlText = `INSERT INTO "projects" ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
-    VALUES ($1, $2, $3, $4, $5, $6, $7);`;
-    pool.query(sqlText, [  ])
+    let sqlText = `INSERT INTO "projects" ("name", "description", "website", "github", "date_completed", "tag_id")
+    VALUES ($1, $2, $3, $4, $5, $6);`;
+    pool.query(sqlText, [project.name, project.description, project.website, project.github, project.date_completed, project.tag_id])
       .then( (response) => {
         res.sendStatus(201);
       })
@@ -28,6 +28,17 @@ router.get('/', (req, res) => {
         res.send(results.rows)
     }).catch((error) => {
         console.log('Something went wrong getting projects', error);
+        res.sendStatus(500);
+    })
+})
+
+router.get('/tags', (req, res) => {
+    console.log('Getting all projects');
+    pool.query(`SELECT * FROM "tags"`)
+    .then((results) => {
+        res.send(results.rows)
+    }).catch((error) => {
+        console.log('Something went wrong getting tags', error);
         res.sendStatus(500);
     })
 })

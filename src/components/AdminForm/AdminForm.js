@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const styles = theme => ({
     container: {
@@ -20,19 +21,26 @@ const styles = theme => ({
     button: {
         margin: theme.spacing.unit,
       },
+    menu: {
+        width: 200,
+    },
 });
+
 
 class AdminForm extends Component {
     state = {
         project: {
             name: '',
             description: '',
-            thumbnail: '',
             website: '',
             github: '',
             date_completed: '',
             tag_id: 0,
         }
+    }
+
+    componentDidMount = () => {
+        this.props.dispatch({ type: 'GET_TAGS' });
     }
 
     handleChange = propertyName => event => {
@@ -54,7 +62,7 @@ class AdminForm extends Component {
                 thumbnail: '',
                 website: '',
                 github: '',
-                date_completed: "2017-05-24",
+                date_completed: '',
                 tag_id: 0,
             }
         })
@@ -77,6 +85,7 @@ class AdminForm extends Component {
                     <TextField
                         label="Project Completion Date"
                         type="date"
+                        defaultValue="2017-05-24"
                         value={this.state.project.date_completed}
                         onChange={this.handleChange('date_completed')}
                         className={classes.textField}
@@ -97,11 +106,11 @@ class AdminForm extends Component {
                         }}
                         margin="normal"
                     >
-                        {/* {currencies.map(option => (
-                            <MenuItem key={option.value} value={option.value}>
-                            {option.label}
+                        {this.props.reduxState.tags.map(option => (
+                            <MenuItem key={option.id} value={option.id}>
+                            {option.name}
                             </MenuItem>
-                        ))} */}
+                        ))}
                     </TextField>
                     <TextField
                         label="GitHub URL"

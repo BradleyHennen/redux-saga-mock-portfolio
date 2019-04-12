@@ -31,8 +31,20 @@ function* getProjectList(action) {
     }
 }
 
+function* getTags(action) {
+    try{
+        const getResponse = yield axios.get('/portfolio/tags');
+        const action = {type: 'SET_TAGS', payload: getResponse.data};
+        yield put(action);
+    }
+    catch (error) {
+        console.log(`Couldn't get projects`);
+        alert(`Sorry couldn't get projects. Try again later.`)
+    }
+}
+
 function* addProject (action) {
-    console.log('In addProject Saga', action);
+    console.log('In addProject Saga', action.payload);
     try{
         yield axios.post('/portfolio', action.payload);
         yield put ({type: 'GET_PROJECTS'})
@@ -46,6 +58,7 @@ function* addProject (action) {
 function* rootSaga() {
     yield takeEvery('GET_PROJECTS', getProjectList);
     yield takeEvery('ADD_PROJECT', addProject);
+    yield takeEvery('GET_TAGS', getTags)
 }
 
 //----REDUCERS----

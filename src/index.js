@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
+
 import './index.css';
 import App from './components/App/App.js';
 import registerServiceWorker from './registerServiceWorker';
@@ -9,15 +11,33 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import { takeEvery, put } from 'redux-saga/effects';
+
 
 // Create the rootSaga generator function
-function* rootSaga() {
 
-}
-
-// Create sagaMiddleware
+//----SAGAS----
 const sagaMiddleware = createSagaMiddleware();
 
+function* getProjectList(action) {
+    try{
+        const getResponse = yield axios.get('/portfolio');
+        const action = {type: 'SET_PROJECTS', payload: getResponse.data};
+        yield put(action);
+    }
+    catch (error) {
+        console.log(`Couldn't get projects`);
+        alert(`Sorry couldn't get projects. Try again later.`)
+    }
+}
+
+
+
+function* rootSaga() {
+    yield takeEvery('GET_PROJECTS', getProjectList)
+}
+
+//----REDUCERS----
 // Used to store projects returned from the server
 const projects = (state = [], action) => {
     switch (action.type) {

@@ -2,33 +2,35 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// router.post('/', (req, res) => {
-//     let feedback = req.body;
-//     console.log('Post feedback', feedback);
+router.post('/', (req, res) => {
+    let project = req.body;
+    console.log('Post project', project);
     
-//     let sqlText = `INSERT INTO "feedback" ("feeling", "understanding", "support", "comments")
-//     VALUES ($1, $2, $3, $4);`;
-//     pool.query(sqlText, [feedback.feeling, feedback.understanding, feedback.support, feedback.comments])
-//       .then( (response) => {
-//         res.sendStatus(201);
-//       })
-//       .catch( (error) => {
-//         console.log('Failed to add new review', feedback);
-//         console.log(error);
-//         res.sendStatus(500);
-//       })
-//   })
+    let sqlText = `INSERT INTO "projects" ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
+    VALUES ($1, $2, $3, $4, $5, $6, $7);`;
+    pool.query(sqlText, [  ])
+      .then( (response) => {
+        res.sendStatus(201);
+      })
+      .catch( (error) => {
+        console.log('Failed to add new project', project);
+        console.log('Error', error);
+        res.sendStatus(500);
+      })
+  })
 
-// router.get('/', (req, res) => {
-//     console.log('Getting all feedback');
-//     pool.query('SELECT * FROM "feedback" ORDER BY "date"')
-//     .then((results) => {
-//         res.send(results.rows)
-//     }).catch((error) => {
-//         console.log('Something went wrong getting feedback', error);
-//         res.sendStatus(500);
-//     })
-// })
+router.get('/', (req, res) => {
+    console.log('Getting all projects');
+    pool.query(`SELECT "projects"."name" AS "project_name", "projects"."description", "projects"."thumbnail", "projects"."website", "projects"."github", "projects"."date_completed", "tags"."name" FROM "projects" 
+    JOIN "tags" ON "projects"."tag_id" = "tags"."id"
+    ORDER BY "date_completed";`)
+    .then((results) => {
+        res.send(results.rows)
+    }).catch((error) => {
+        console.log('Something went wrong getting projects', error);
+        res.sendStatus(500);
+    })
+})
 
 // router.delete('/:id', (req, res) => {
 //     console.log('Deleteing feedback');

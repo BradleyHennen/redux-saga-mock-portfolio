@@ -17,7 +17,7 @@ import { CardActionArea } from '@material-ui/core';
 
 const styles = {
     card: {
-        maxWidth: 800,
+        maxWidth: 820,
     },
     title: {
         fontSize: 14,
@@ -36,6 +36,21 @@ const styles = {
 
 class ProjectListItem extends Component {
 
+    thumbnailRender = () => {
+        if(this.props.project.thumbnail === null) {
+            return "/images/default.jpg";
+        } 
+        else {
+            return this.props.project.thumbnail
+        }
+    };
+
+    websiteButtonRender = () => {
+        if(this.props.project.website === null) {
+            return true;
+        }
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -48,8 +63,8 @@ class ProjectListItem extends Component {
                         rel="noreferrer">
                         <CardMedia
                             className={classes.media}
-                            image={this.props.project.thumbnail}
-                            title="goat"
+                            image={this.thumbnailRender()}
+                            title="Project Screen Shot"
                         />
                     </CardActionArea>
                     <CardContent>
@@ -74,6 +89,7 @@ class ProjectListItem extends Component {
                             GitHub
                         </Button>
                         <Button href={this.props.project.website}
+                            disabled={this.websiteButtonRender()}
                             target="_blank"
                             rel="noreferrer"
                             variant="contained"

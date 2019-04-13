@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AdminForm from '../AdminForm/AdminForm';
+import AdminTable from '../AdminTable/AdminTable';
 
 class Admin extends Component {
   
@@ -10,7 +11,7 @@ class Admin extends Component {
                 <h2>Admin</h2>
             </header>
             <AdminForm />
-            
+            <AdminTable />
         </div>
     );
   }

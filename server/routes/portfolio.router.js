@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
     console.log('Getting all projects');
-    pool.query(`SELECT "projects"."name" AS "project_name", "projects"."description", "projects"."thumbnail", "projects"."website", "projects"."github", "projects"."date_completed", "tags"."name" FROM "projects" 
+    pool.query(`SELECT "projects"."id" AS "project_id", "projects"."name" AS "project_name", "projects"."description", "projects"."thumbnail", "projects"."website", "projects"."github", "projects"."date_completed", "tags"."name" FROM "projects" 
     JOIN "tags" ON "projects"."tag_id" = "tags"."id"
     ORDER BY "date_completed";`)
     .then((results) => {
@@ -43,17 +43,17 @@ router.get('/tags', (req, res) => {
     })
 })
 
-// router.delete('/:id', (req, res) => {
-//     console.log('Deleteing feedback');
-//     let feedbackId = req.params.id;
-//     let sqlText = 'DELETE FROM "feedback" WHERE "id"=$1'
-//     pool.query(sqlText, [feedbackId])
-//     .then((response) => {
-//         res.sendStatus(201);
-//     }).catch((error) => {
-//         res.sendStatus(500);
-//     })
-// })
+router.delete('/:id', (req, res) => {
+    console.log('Deleteing project');
+    let projectId = req.params.id;
+    let sqlText = 'DELETE FROM "projects" WHERE "id"=$1'
+    pool.query(sqlText, [projectId])
+    .then((response) => {
+        res.sendStatus(201);
+    }).catch((error) => {
+        res.sendStatus(500);
+    })
+})
 
 // router.put('/:id', (req, res) => {
 //     console.log('Flagging Feedback');

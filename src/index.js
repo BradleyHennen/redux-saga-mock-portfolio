@@ -55,10 +55,22 @@ function* addProject (action) {
     }
 }
 
+function* deleteProject (action) {
+    try{
+        yield axios.delete( `/portfolio/${action.payload}` );
+        yield put( {type: 'GET_PLANTS'} );
+    }
+    catch (error) {
+        console.log(`Couldn't delete plant.`, error);
+        alert(`Sorry couldn't delete plant. Try again later.`);
+    }
+}
+
 function* rootSaga() {
     yield takeEvery('GET_PROJECTS', getProjectList);
     yield takeEvery('ADD_PROJECT', addProject);
-    yield takeEvery('GET_TAGS', getTags)
+    yield takeEvery('GET_TAGS', getTags);
+    yield takeEvery('DELETE_PROJECT', deleteProject)
 }
 
 //----REDUCERS----

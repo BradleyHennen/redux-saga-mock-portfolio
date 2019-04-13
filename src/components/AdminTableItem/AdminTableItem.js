@@ -38,9 +38,9 @@ class AdminTableItem extends Component {
         return (
             <TableRow>
                 <TableCell>{this.props.project.project_name}</TableCell>
-                <TableCell>{this.props.project.description}</TableCell>
+                {/* <TableCell>{this.props.project.description}</TableCell> */}
                 <TableCell>
-                    <Button onClick={this.handleClick} color="primary">Delete</Button>
+                    <Button onClick={this.handleClick} color="primary"  variant="contained">Delete</Button>
                 </TableCell>
             </TableRow>
         );

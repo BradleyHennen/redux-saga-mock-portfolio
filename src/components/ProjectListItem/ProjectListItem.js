@@ -17,13 +17,13 @@ import { CardActionArea } from '@material-ui/core';
 
 const styles = {
     card: {
-        maxWidth: 1000,
+        maxWidth: 800,
     },
     title: {
         fontSize: 14,
     },
     media: {
-        height: 500,
+        height: 300,
     },
 };
 
@@ -49,7 +49,7 @@ render() {
                             <Typography variant="h5" color="primary" gutterBottom>
                                 {this.props.project.project_name}
                             </Typography>
-                            <Typography variant="p" color="primary" gutterBottom>
+                            <Typography paragraph color="primary" gutterBottom>
                                 {this.props.project.description}
                             </Typography>
                             <Typography variant="h6" color="primary" gutterBottom>
@@ -62,14 +62,16 @@ render() {
                         target="_blank"
                         rel="noreferrer"
                         size="small" 
-                        color="primary" >
+                        variant="contained"
+                        color="secondary" >
                             GitHub
                         </Button>
                         <Button href={this.props.project.website}
                         target="_blank"
                         rel="noreferrer"
+                        variant="contained"
                         size="small" 
-                        color="primary" >
+                        color="secondary" >
                             Website
                         </Button>
                     </CardActions>

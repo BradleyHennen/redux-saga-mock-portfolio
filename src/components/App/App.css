@@ -1,7 +1,11 @@
 .App {
   text-align: center;
+  background-color: whitesmoke;
 }
 
 header {
-  background-color: burlywood;
+  background-image: url(/images/header.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

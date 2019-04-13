@@ -23,7 +23,7 @@ class Header extends Component {
       <header >
         <Grid container justify="center" alignItems="center" direction="column">
           <Avatar alt="Remy Sharp" src="/images/bradley_hennen.jpg" className={classes.bigAvatar} />
-          <Typography variant="h3" gutterBottom>Bradley Hennen</Typography>
+          <Typography  variant="h2" gutterBottom>Bradley Hennen</Typography>
         </Grid>
       </header>
     );

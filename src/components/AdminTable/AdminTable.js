@@ -38,7 +38,7 @@ class AdminTable extends Component {
                 <TableHead>
                     <TableRow>
                         <TableCell>Project Name</TableCell>
-                        <TableCell align="right"g>Description</TableCell>
+                        {/* <TableCell align="right"g>Description</TableCell> */}
                         <TableCell align="right">Delete</TableCell>
                     </TableRow>
                 </TableHead>

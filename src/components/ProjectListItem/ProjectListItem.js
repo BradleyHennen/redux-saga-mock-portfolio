@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 //----Material UI----
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
@@ -16,21 +17,13 @@ import { CardActionArea } from '@material-ui/core';
 
 const styles = {
     card: {
-        width: "75%",
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
+        maxWidth: 1000,
     },
     title: {
         fontSize: 14,
     },
-    pos: {
-        marginBottom: 12,
-    },
     media: {
-        height: 140,
+        height: 500,
     },
 };
 
@@ -40,48 +33,48 @@ render() {
     const { classes } = this.props;
 
     return (
-        <div className="App">
-            {/* {JSON.stringify(this.props.project)} */}
-            <Card className={classes.card} >
-                <CardActionArea 
-                    href={this.props.project.website}
-                    target="_blank"
-                    rel="noreferrer">
-                    <CardMedia 
-                        className={classes.media}
-                        image="/public/images/goat_small.jpg"
-                        title="goat"
-                    />
-                    <CardContent>
-                        <Typography variant="h4" color="primary" gutterBottom>
-                            {this.props.project.project_name}
-                        </Typography>
-                        <Typography variant="h5" color="primary" gutterBottom>
-                            {this.props.project.description}
-                        </Typography>
-                        <Typography variant="h5" color="primary" gutterBottom>
-                            {this.props.project.name}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button href={this.props.project.github} 
-                    target="_blank"
-                    rel="noreferrer"
-                    size="small" 
-                    color="primary" >
-                        GitHub
-                    </Button>
-                    <Button href={this.props.project.website}
-                    target="_blank"
-                    rel="noreferrer"
-                    size="small" 
-                    color="primary" >
-                        Website
-                    </Button>
-                </CardActions>
-            </Card>
-        </div>
+            <Grid item xs={12}>
+                <Card className={classes.card} >
+                    <CardActionArea 
+                        href={this.props.project.website}
+                        target="_blank"
+                        rel="noreferrer">
+                        <CardMedia 
+                            className={classes.media}
+                            image={this.props.project.thumbnail}
+                            title="goat"
+                        />
+                        </CardActionArea>
+                        <CardContent>
+                            <Typography variant="h5" color="primary" gutterBottom>
+                                {this.props.project.project_name}
+                            </Typography>
+                            <Typography variant="p" color="primary" gutterBottom>
+                                {this.props.project.description}
+                            </Typography>
+                            <Typography variant="h6" color="primary" gutterBottom>
+                                {this.props.project.name}
+                            </Typography>
+                        </CardContent>
+                    
+                    <CardActions>
+                        <Button href={this.props.project.github} 
+                        target="_blank"
+                        rel="noreferrer"
+                        size="small" 
+                        color="primary" >
+                            GitHub
+                        </Button>
+                        <Button href={this.props.project.website}
+                        target="_blank"
+                        rel="noreferrer"
+                        size="small" 
+                        color="primary" >
+                            Website
+                        </Button>
+                    </CardActions>
+                </Card>
+            </Grid>
     );
 }
 }

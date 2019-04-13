@@ -12,9 +12,6 @@ import Grid from '@material-ui/core/Grid';
 const styles = theme => ({
     root: {
       flexGrow: 1,
-      direction: "column",
-      justify: "center",
-      alignItems: "center",
     },
   });
 
@@ -31,7 +28,7 @@ class ProjectList extends Component {
             <div className="App">
                 <Header />
                 <h2>Project List</h2>
-                <Grid container >
+                <Grid container direction="column"  justify="center" alignItems="center" spacing={24}>
                     {this.props.reduxState.projects.map(project => {
                         return <ProjectListItem key={project.id} project={project} />
                     })}

@@ -11,11 +11,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
 
 const styles = theme => ({
     root: {
-      width: '100%',
-      marginTop: theme.spacing.unit * 3,
+      width: '75%',
+      marginTop: theme.spacing.unit * 8,
       overflowX: 'auto',
     },
     table: {
@@ -33,6 +35,7 @@ class AdminTable extends Component {
   render() {
     const { classes } = this.props;
     return (
+        <Grid container justify="center" alignItems="center" direction="column">
         <Paper className={classes.root}>
             <Table className={classes.table}>
                 <TableHead>
@@ -49,6 +52,7 @@ class AdminTable extends Component {
                 </TableBody>
             </Table>
         </Paper>
+        </Grid>
     );
   }
 }

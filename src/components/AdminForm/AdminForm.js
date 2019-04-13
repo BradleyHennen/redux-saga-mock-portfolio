@@ -8,10 +8,10 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 
+
 const styles = theme => ({
     container: {
-        display: 'flex',
-        flexWrap: 'wrap',
+        // flexWrap: 'wrap',
     },
     textField: {
         marginLeft: theme.spacing.unit,
@@ -20,10 +20,22 @@ const styles = theme => ({
     },
     button: {
         margin: theme.spacing.unit,
+        marginTop: 20,
       },
     menu: {
         width: 200,
     },
+    date: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        marginTop: 16,
+        width: 200,
+    },
+    multiline: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 500,
+    }
 });
 
 
@@ -73,25 +85,28 @@ class AdminForm extends Component {
         const { classes } = this.props;
 
         return (
-            <div>
+            
                 <form className={classes.container} noValidate autoComplete="off">
                     <TextField
-                        label="Name"
+                        label="Project Name"
                         className={classes.textField}
                         value={this.state.project.name}
                         onChange={this.handleChange('name')}
                         margin="normal"
                     />
-                    <TextField
-                        label="Project Completion Date"
-                        type="date"
-                        defaultValue="2017-05-24"
-                        value={this.state.project.date_completed}
-                        onChange={this.handleChange('date_completed')}
+                     <TextField
+                        label="GitHub URL"
                         className={classes.textField}
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
+                        value={this.state.project.github}
+                        onChange={this.handleChange('github')}
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Website URL (Optional)"
+                        className={classes.textField}
+                        value={this.state.project.website}
+                        onChange={this.handleChange('website')}
+                        margin="normal"
                     />
                     <TextField
                         select
@@ -113,31 +128,30 @@ class AdminForm extends Component {
                         ))}
                     </TextField>
                     <TextField
-                        label="GitHub URL"
-                        className={classes.textField}
-                        value={this.state.project.github}
-                        onChange={this.handleChange('github')}
+                        label="Project Completion Date"
+                        type="date"
                         margin="normal"
-                    />
+                        value={this.state.project.date_completed}
+                        onChange={this.handleChange('date_completed')}
+                        className={classes.date}
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                    /> 
+                    <br/>
                     <TextField
-                        label="Website URL (Optional)"
-                        className={classes.textField}
-                        value={this.state.project.website}
-                        onChange={this.handleChange('website')}
-                        margin="normal"
-                    />
-                    <TextField
-                        label="Description"
-                        className={classes.textField}
+                        label="Project Description"
+                        className={classes.multiline}
                         multiline
                         rows="4"
                         value={this.state.project.description}
                         onChange={this.handleChange('description')}
                         margin="normal"
-                    />
+                    />     
+                   
+                    <br/> 
                     <Button variant="contained" color="primary" className={classes.button} onClick={this.addProject}>Submit</Button>
                 </form>
-            </div>
         );
     }
 }

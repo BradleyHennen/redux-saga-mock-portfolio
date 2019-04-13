@@ -25,60 +25,69 @@ const styles = {
     media: {
         height: 300,
     },
+    tags: {
+        fontStyle: "italic",
+        float: "right"
+    },
+    button: {
+        marginBottom: 10,
+    }
 };
 
 class ProjectListItem extends Component {
 
-render() {
-    const { classes } = this.props;
+    render() {
+        const { classes } = this.props;
 
-    return (
+        return (
             <Grid item xs={12}>
                 <Card className={classes.card} >
-                    <CardActionArea 
+                    <CardActionArea
                         href={this.props.project.website}
                         target="_blank"
                         rel="noreferrer">
-                        <CardMedia 
+                        <CardMedia
                             className={classes.media}
                             image={this.props.project.thumbnail}
                             title="goat"
                         />
-                        </CardActionArea>
-                        <CardContent>
-                            <Typography variant="h5" color="primary" gutterBottom>
-                                {this.props.project.project_name}
-                            </Typography>
-                            <Typography paragraph color="primary" gutterBottom>
-                                {this.props.project.description}
-                            </Typography>
-                            <Typography variant="h6" color="primary" gutterBottom>
-                                {this.props.project.name}
-                            </Typography>
-                        </CardContent>
-                    
+                    </CardActionArea>
+                    <CardContent>
+                        <Typography variant="h4" color="secondary" gutterBottom>
+                            {this.props.project.project_name}
+                        </Typography>
+                        <Typography paragraph color="primary" gutterBottom>
+                            {this.props.project.description}
+                        </Typography>
+                        <Typography variant="h6" className={classes.tags} gutterBottom>
+                            {this.props.project.name}
+                        </Typography>
+                    </CardContent>
                     <CardActions>
-                        <Button href={this.props.project.github} 
-                        target="_blank"
-                        rel="noreferrer"
-                        size="small" 
-                        variant="contained"
-                        color="secondary" >
+                        <Button href={this.props.project.github}
+                            target="_blank"
+                            rel="noreferrer"
+                            size="small"
+                            variant="contained"
+                            className={classes.button}
+                            color="secondary" >
                             GitHub
                         </Button>
                         <Button href={this.props.project.website}
-                        target="_blank"
-                        rel="noreferrer"
-                        variant="contained"
-                        size="small" 
-                        color="secondary" >
+                            target="_blank"
+                            rel="noreferrer"
+                            variant="contained"
+                            size="small"
+                            className={classes.button}
+                            color="secondary" >
                             Website
                         </Button>
                     </CardActions>
+
                 </Card>
             </Grid>
-    );
-}
+        );
+    }
 }
 
 ProjectListItem.propTypes = {

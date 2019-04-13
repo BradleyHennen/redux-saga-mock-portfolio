@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import axios from 'axios';
+
 
 //----Material UI----
 import PropTypes from 'prop-types';
@@ -22,14 +24,13 @@ const styles = theme => ({
 });
 
 
-class AdminTable extends Component {
+class AdminTableItem extends Component {
 
     handleClick = (event) => {
-        console.log('Delete ID', event.target.value);
-        this.props.dispatch({ type: 'DELETE_PROJECT', payload: event.target.value })
+        console.log('Delete ID', this.props.project.project_id);
+        this.props.dispatch({ type: 'DELETE_PROJECT', payload: this.props.project.project_id })
         this.props.dispatch({ type: 'GET_PROJECTS'})
     }
-
 
     render() {
         // const { classes } = this.props;
@@ -39,14 +40,14 @@ class AdminTable extends Component {
                 <TableCell>{this.props.project.project_name}</TableCell>
                 <TableCell>{this.props.project.description}</TableCell>
                 <TableCell>
-                    <Button value={this.props.project.project_id} onClick={this.handleClick} color="primary">Delete</Button>
+                    <Button onClick={this.handleClick} color="primary">Delete</Button>
                 </TableCell>
             </TableRow>
         );
     }
 }
 
-AdminTable.propTypes = {
+AdminTableItem.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
@@ -54,4 +55,4 @@ const mapStateToProps = reduxState => ({
     reduxState,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(AdminTable));
+export default connect(mapStateToProps)(withStyles(styles)(AdminTableItem));

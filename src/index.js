@@ -58,7 +58,7 @@ function* addProject (action) {
 function* deleteProject (action) {
     try{
         yield axios.delete( `/portfolio/${action.payload}` );
-        yield put( {type: 'GET_PLANTS'} );
+        yield put( {type: 'GET_PROJECTS'} );
     }
     catch (error) {
         console.log(`Couldn't delete plant.`, error);

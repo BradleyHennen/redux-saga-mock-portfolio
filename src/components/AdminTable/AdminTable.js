@@ -16,12 +16,13 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     root: {
-      width: '75%',
+      width: '100%',
       marginTop: theme.spacing.unit * 8,
       overflowX: 'auto',
     },
     table: {
-      minWidth: 700,
+        width: 800,
+      minWidth: 350,
     },
   });
 
@@ -36,22 +37,23 @@ class AdminTable extends Component {
     const { classes } = this.props;
     return (
         <Grid container justify="center" alignItems="center" direction="column">
-        <Paper className={classes.root}>
-            <Table className={classes.table}>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Project Name</TableCell>
-                        {/* <TableCell align="right"g>Description</TableCell> */}
-                        <TableCell align="right">Delete</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {this.props.reduxState.projects.map( project => {
-                        return <AdminTableItem key={project.project_id} project={project} />
-                    })}
-                </TableBody>
-            </Table>
-        </Paper>
+        <Grid item xs={12}>
+            <Paper className={classes.root}>
+                <Table className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Project Name</TableCell>
+                            <TableCell >Delete</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {this.props.reduxState.projects.map( project => {
+                            return <AdminTableItem key={project.project_id} project={project} />
+                        })}
+                    </TableBody>
+                </Table>
+            </Paper>
+            </Grid>
         </Grid>
     );
   }

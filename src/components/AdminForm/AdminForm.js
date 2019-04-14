@@ -7,6 +7,8 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
+import Typography from '@material-ui/core/Typography';
+
 
 
 const styles = theme => ({
@@ -87,6 +89,7 @@ class AdminForm extends Component {
         return (
             
                 <form className={classes.container} noValidate autoComplete="off">
+                  <Typography  variant="h4" gutterBottom>Add Project</Typography>
                     <TextField
                         label="Project Name"
                         className={classes.textField}

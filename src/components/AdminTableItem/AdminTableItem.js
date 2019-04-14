@@ -10,8 +10,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 
-
-
 const styles = theme => ({
     root: {
         width: '100%',
@@ -23,7 +21,6 @@ const styles = theme => ({
     },
 });
 
-
 class AdminTableItem extends Component {
 
     handleClick = (event) => {
@@ -32,15 +29,16 @@ class AdminTableItem extends Component {
         this.props.dispatch({ type: 'GET_PROJECTS'})
     }
 
+ 
+
     render() {
-        // const { classes } = this.props;
+
 
         return (
             <TableRow>
                 <TableCell>{this.props.project.project_name}</TableCell>
-                {/* <TableCell>{this.props.project.description}</TableCell> */}
                 <TableCell>
-                    <Button onClick={this.handleClick} color="secondary"  variant="contained">Delete</Button>
+                    <Button onClick={this.handleClick} color="secondary" variant="contained">Delete</Button>
                 </TableCell>
             </TableRow>
         );
@@ -56,3 +54,7 @@ const mapStateToProps = reduxState => ({
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(AdminTableItem));
+
+
+
+

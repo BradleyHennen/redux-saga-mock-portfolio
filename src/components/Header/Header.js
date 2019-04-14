@@ -10,22 +10,22 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
   bigAvatar: {
     margin: 10,
-    width: 200,
-    height: 200,
+    width: 180,
+    height: 180,
   },
   headerTitle: {
     // textDecoration: 'underline',
-    borderBottom: `4px solid black`,
+    borderBottom: `4px solid white`,
     letterSpacing: 2,
     fontWeight: 400,
-    color: "#212121",
-    textShadow: `1px 1px 0 #bdbdbd`
+    color: "white",
+    textShadow: `2px 2px 0 #000`
   },
   headerTitleBottom: {
     letterSpacing: 2,
     fontWeight: 400,
-    color: "#212121",
-    textShadow: `1px 1px 0 #bdbdbd`
+    color: "white",
+    textShadow: `2px 2px 0 #000`
   }
 };
 

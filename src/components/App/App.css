@@ -1,6 +1,6 @@
 body {
   text-align: center;
-  background-color: #white;
+  background-color: whitesmoke;
 }
 
 header {
@@ -8,4 +8,8 @@ header {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.admin {
+  margin-top: 15px;
 }

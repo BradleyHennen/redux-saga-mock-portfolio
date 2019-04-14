@@ -8,7 +8,7 @@ class Admin extends Component {
   
   render() {
     return (
-        <div className="table">
+        <div className="admin">
             <Typography  variant="h1" gutterBottom>Admin Page</Typography>
             <AdminForm />
             <AdminTable />

@@ -26,10 +26,10 @@ class AdminTableItem extends Component {
     handleClick = (event) => {
         console.log('Delete ID', this.props.project.project_id);
         this.props.dispatch({ type: 'DELETE_PROJECT', payload: this.props.project.project_id })
-        this.props.dispatch({ type: 'GET_PROJECTS'})
+        this.props.dispatch({ type: 'GET_PROJECTS' })
     }
 
- 
+
 
     render() {
 

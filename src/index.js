@@ -20,9 +20,9 @@ import { takeEvery, put } from 'redux-saga/effects';
 const sagaMiddleware = createSagaMiddleware();
 
 function* getProjectList(action) {
-    try{
+    try {
         const getResponse = yield axios.get('/portfolio');
-        const action = {type: 'SET_PROJECTS', payload: getResponse.data};
+        const action = { type: 'SET_PROJECTS', payload: getResponse.data };
         yield put(action);
     }
     catch (error) {
@@ -32,9 +32,9 @@ function* getProjectList(action) {
 }
 
 function* getTags(action) {
-    try{
+    try {
         const getResponse = yield axios.get('/portfolio/tags');
-        const action = {type: 'SET_TAGS', payload: getResponse.data};
+        const action = { type: 'SET_TAGS', payload: getResponse.data };
         yield put(action);
     }
     catch (error) {
@@ -43,34 +43,34 @@ function* getTags(action) {
     }
 }
 
-function* addProject (action) {
+function* addProject(action) {
     console.log('In addProject Saga', action.payload);
-    try{
+    try {
         yield axios.post('/portfolio', action.payload);
-        yield put ({type: 'GET_PROJECTS'})
+        yield put({ type: 'GET_PROJECTS' })
     }
     catch (error) {
         console.log(`couldn't add new project`, error);
-        alert(`Sorry, couldn't add your project.  Try again later.`); 
+        alert(`Sorry, couldn't add your project.  Try again later.`);
     }
 }
 
-function* addTag (action) {
+function* addTag(action) {
     console.log('In addTag Saga', action.payload);
-    try{
+    try {
         yield axios.post('/portfolio/tags', action.payload);
-        yield put({type: 'GET_TAGS'});
+        yield put({ type: 'GET_TAGS' });
     }
     catch (error) {
         console.log(`couldn't add new tag`, error);
-        alert(`Sorry, couldn't add your tag.  Try again later.`); 
+        alert(`Sorry, couldn't add your tag.  Try again later.`);
     }
 }
 
-function* deleteProject (action) {
-    try{
-        yield axios.delete( `/portfolio/${action.payload}` );
-        yield put( {type: 'GET_PROJECTS'} );
+function* deleteProject(action) {
+    try {
+        yield axios.delete(`/portfolio/${action.payload}`);
+        yield put({ type: 'GET_PROJECTS' });
     }
     catch (error) {
         console.log(`Couldn't delete plant.`, error);
@@ -120,6 +120,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
     document.getElementById('root'));
 registerServiceWorker();

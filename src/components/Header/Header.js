@@ -30,14 +30,14 @@ const styles = {
 };
 
 class Header extends Component {
-  
+
   render() {
     const { classes } = this.props;
     return (
       <header >
         <Grid container justify="center" alignItems="center" direction="column">
           <Avatar alt="Bradley Hennen" src="/images/bradley_hennen.jpg" className={classes.bigAvatar} />
-          <Typography  variant="h1" className={classes.headerTitle} gutterBottom>Bradley Hennen</Typography>
+          <Typography variant="h1" className={classes.headerTitle} gutterBottom>Bradley Hennen</Typography>
           <Typography className={classes.headerTitleBottom} variant="h2" gutterBottom>Portfolio</Typography>
         </Grid>
       </header>

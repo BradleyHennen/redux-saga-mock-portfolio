@@ -37,16 +37,16 @@ const styles = {
 class ProjectListItem extends Component {
 
     thumbnailRender = () => {
-        if(this.props.project.thumbnail === null) {
+        if (this.props.project.thumbnail === null) {
             return "/images/default.jpg";
-        } 
+        }
         else {
             return this.props.project.thumbnail
         }
     };
 
     websiteButtonRender = () => {
-        if(this.props.project.website === null) {
+        if (this.props.project.website === null) {
             return true;
         }
     }

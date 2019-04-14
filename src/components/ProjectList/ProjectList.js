@@ -11,10 +11,10 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     root: {
-      flexGrow: 1,
-      marginTop: theme.spacing.unit * 6,
+        flexGrow: 1,
+        marginTop: theme.spacing.unit * 6,
     },
-  });
+});
 
 class ProjectList extends Component {
 
@@ -28,7 +28,7 @@ class ProjectList extends Component {
         return (
             <div className="App">
                 <Header />
-                <Grid container className={classes.root} direction="column"  justify="center" alignItems="center" spacing={24}>
+                <Grid container className={classes.root} direction="column" justify="center" alignItems="center" spacing={24}>
                     {this.props.reduxState.projects.map(project => {
                         return <ProjectListItem key={project.project_id} project={project} />
                     })}
@@ -40,7 +40,7 @@ class ProjectList extends Component {
 
 ProjectList.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+};
 
 const mapStateToProps = reduxState => ({
     reduxState,

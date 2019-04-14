@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
+
 
 //----Material UI----
 import PropTypes from 'prop-types';
@@ -51,11 +53,17 @@ class AdminForm extends Component {
     }
 
 
+    handleClick = () => {
+        this.props.history.push('/');
+    }
+
+
+
     render() {
         const { classes } = this.props;
 
         return (
-
+            <div>
             <form className={classes.container} noValidate autoComplete="off">
                 <Typography variant="h4" gutterBottom>Add Keys</Typography>
                 <TextField
@@ -67,6 +75,8 @@ class AdminForm extends Component {
                 />
                 <Button variant="contained" color="primary" className={classes.button} onClick={this.addKey}>Submit</Button>
             </form>
+            <Button className={classes.button} onClick={this.handleClick}>Back to project page</Button>
+            </div>
         );
     }
 }
@@ -75,8 +85,5 @@ AdminForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = reduxState => ({
-    reduxState,
-});
 
-export default connect(mapStateToProps)(withStyles(styles)(AdminForm));
+export default withRouter(connect()(withStyles(styles)(AdminForm)));

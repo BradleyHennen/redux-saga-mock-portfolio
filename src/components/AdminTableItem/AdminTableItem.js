@@ -46,11 +46,7 @@ AdminTableItem.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = reduxState => ({
-    reduxState,
-});
-
-export default connect(mapStateToProps)(withStyles(styles)(AdminTableItem));
+export default connect()(withStyles(styles)(AdminTableItem));
 
 
 

@@ -55,6 +55,18 @@ function* addProject (action) {
     }
 }
 
+function* addTag (action) {
+    console.log('In addTag Saga', action.payload);
+    try{
+        yield axios.post('/portfolio/tags', action.payload);
+        yield put({type: 'GET_TAGS'});
+    }
+    catch (error) {
+        console.log(`couldn't add new tag`, error);
+        alert(`Sorry, couldn't add your tag.  Try again later.`); 
+    }
+}
+
 function* deleteProject (action) {
     try{
         yield axios.delete( `/portfolio/${action.payload}` );
@@ -70,7 +82,8 @@ function* rootSaga() {
     yield takeEvery('GET_PROJECTS', getProjectList);
     yield takeEvery('ADD_PROJECT', addProject);
     yield takeEvery('GET_TAGS', getTags);
-    yield takeEvery('DELETE_PROJECT', deleteProject)
+    yield takeEvery('DELETE_PROJECT', deleteProject);
+    yield takeEvery('ADD_TAG', addTag);
 }
 
 //----REDUCERS----

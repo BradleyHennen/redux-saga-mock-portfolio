@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     let project = req.body;
-    console.log('Post project', project);
+    console.log('POST project', project);
     
     let sqlText = `INSERT INTO "projects" ("name", "description", "website", "github", "date_completed", "tag_id")
     VALUES ($1, $2, $3, $4, $5, $6);`;
@@ -31,6 +31,23 @@ router.get('/', (req, res) => {
         res.sendStatus(500);
     })
 })
+
+router.post('/tags', (req, res) => {
+    let tag = req.body;
+    console.log('POST tag', tag);
+    
+    let sqlText = `INSERT INTO "tags" ("name")
+    VALUES ($1);`;
+    pool.query(sqlText, [tag.name])
+      .then( (response) => {
+        res.sendStatus(201);
+      })
+      .catch( (error) => {
+        console.log('Failed to add new tag', project);
+        console.log('Error', error);
+        res.sendStatus(500);
+      })
+  })
 
 router.get('/tags', (req, res) => {
     console.log('Getting all projects');

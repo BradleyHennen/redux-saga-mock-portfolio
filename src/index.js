@@ -1,24 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-
 import './index.css';
 import App from './components/App/App.js';
 import registerServiceWorker from './registerServiceWorker';
+
+//----Redux Reducer----
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-// Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
-// Import saga middleware
+
+//----Redux Saga----
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 
 
-// Create the rootSaga generator function
-
 //----SAGAS----
 const sagaMiddleware = createSagaMiddleware();
 
+//GETs project information
+//Adds infromation to the projects reducer to be stored
 function* getProjectList(action) {
     try {
         const getResponse = yield axios.get('/portfolio');
@@ -31,6 +32,8 @@ function* getProjectList(action) {
     }
 }
 
+//GETs tag information
+//Adds info to the tags reducer to be stored
 function* getTags(action) {
     try {
         const getResponse = yield axios.get('/portfolio/tags');
@@ -43,6 +46,8 @@ function* getTags(action) {
     }
 }
 
+//POSTs project infromation that was received from the AdminForm to the router
+//Runs getProjectList once the data was posted
 function* addProject(action) {
     console.log('In addProject Saga', action.payload);
     try {
@@ -55,6 +60,8 @@ function* addProject(action) {
     }
 }
 
+//POSTs new tags that were received from the AdminKeyForm to the router
+//Runs getTags once the data was posted
 function* addTag(action) {
     console.log('In addTag Saga', action.payload);
     try {
@@ -67,6 +74,8 @@ function* addTag(action) {
     }
 }
 
+//DELETEs project data based on the ID that was received from the AdminTable
+//Runs getProjectList once the data was deleted
 function* deleteProject(action) {
     try {
         yield axios.delete(`/portfolio/${action.payload}`);
@@ -85,6 +94,7 @@ function* rootSaga() {
     yield takeEvery('DELETE_PROJECT', deleteProject);
     yield takeEvery('ADD_TAG', addTag);
 }
+
 
 //----REDUCERS----
 // Used to store projects returned from the server

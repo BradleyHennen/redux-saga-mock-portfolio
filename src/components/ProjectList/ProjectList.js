@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+//----Components----
 import ProjectListItem from '../ProjectListItem/ProjectListItem'
 import Header from '../Header/Header';
 
@@ -8,7 +10,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-
+//----Styling----
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -16,8 +18,10 @@ const styles = theme => ({
     },
 });
 
+
 class ProjectList extends Component {
 
+    //Gets project info from the database to be used to display information Cards to the project page
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_PROJECTS' });
     }

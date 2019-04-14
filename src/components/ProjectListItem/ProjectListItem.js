@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { CardActionArea } from '@material-ui/core';
 
 
-
+//----Styling----
 const styles = {
     card: {
         maxWidth: 820,
@@ -34,8 +34,10 @@ const styles = {
     }
 };
 
+
 class ProjectListItem extends Component {
 
+    //Checks if the thumbNail is null and displays a default photo in its place.
     thumbnailRender = () => {
         if (this.props.project.thumbnail === null) {
             return "/images/default.jpg";
@@ -45,6 +47,8 @@ class ProjectListItem extends Component {
         }
     };
 
+    //Checks if there is an url for the website link button
+    //If it comes in null disables the button
     websiteButtonRender = () => {
         if (this.props.project.website === null) {
             return true;
@@ -99,7 +103,6 @@ class ProjectListItem extends Component {
                             Website
                         </Button>
                     </CardActions>
-
                 </Card>
             </Grid>
         );

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+
+//----Material-UI----
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-
-
+//----Styling----
 const styles = {
   bigAvatar: {
     margin: 10,
@@ -14,7 +15,6 @@ const styles = {
     height: 180,
   },
   headerTitle: {
-    // textDecoration: 'underline',
     borderBottom: `4px solid white`,
     letterSpacing: 2,
     fontWeight: 400,
@@ -33,6 +33,7 @@ class Header extends Component {
 
   render() {
     const { classes } = this.props;
+    
     return (
       <header >
         <Grid container justify="center" alignItems="center" direction="column">

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import axios from 'axios';
-
 
 //----Material UI----
 import PropTypes from 'prop-types';
@@ -10,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 
+//----Styling----
 const styles = theme => ({
     root: {
         width: '100%',
@@ -23,16 +22,14 @@ const styles = theme => ({
 
 class AdminTableItem extends Component {
 
+    //Sends specific project id to be deleted from the database 
     handleClick = (event) => {
         console.log('Delete ID', this.props.project.project_id);
         this.props.dispatch({ type: 'DELETE_PROJECT', payload: this.props.project.project_id })
         this.props.dispatch({ type: 'GET_PROJECTS' })
     }
 
-
-
     render() {
-
 
         return (
             <TableRow>

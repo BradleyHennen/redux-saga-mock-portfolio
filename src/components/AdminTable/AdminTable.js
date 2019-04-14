@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+//----Components----
 import AdminTableItem from '../AdminTableItem/AdminTableItem';
 
 //----Material UI----
@@ -13,7 +15,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-
+//----Styling----
 const styles = theme => ({
     root: {
         width: '100%',
@@ -29,6 +31,7 @@ const styles = theme => ({
 
 class AdminTable extends Component {
 
+    //Gets project info from the database to be used in the admin table to .map() rows
     componentDidMount() {
         this.props.dispatch({ type: 'GET_PROJECTS' });
     }

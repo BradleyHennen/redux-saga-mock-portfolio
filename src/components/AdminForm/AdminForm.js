@@ -10,11 +10,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 
 
-
+//----Styling----
 const styles = theme => ({
-    container: {
-        // flexWrap: 'wrap',
-    },
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
@@ -53,10 +50,12 @@ class AdminForm extends Component {
         }
     }
 
+    //Gets tags from database to be used in the dropdown selector in the form
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_TAGS' });
     }
 
+    //Updates state.project values based on specific key propertyName
     handleChange = propertyName => event => {
         this.setState({
             project: {
@@ -66,6 +65,8 @@ class AdminForm extends Component {
         })
     }
 
+    //Sends state.project to the addProject Saga to update database 
+    //Clear input fields on submit
     addProject = event => {
         event.preventDefault();
         this.props.dispatch({ type: 'ADD_PROJECT', payload: this.state.project });

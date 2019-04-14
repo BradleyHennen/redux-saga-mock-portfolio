@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+
+//----Components----
 import AdminForm from '../AdminForm/AdminForm';
 import AdminTable from '../AdminTable/AdminTable';
 import AdminKeyForm from '../AdminKeyForm/AdminKeyForm';
 
+//----Materal-UI----
 import Typography from '@material-ui/core/Typography';
 
 class Admin extends Component {

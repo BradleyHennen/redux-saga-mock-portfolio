@@ -2,10 +2,10 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+//POST request that sends project information to "projects" table in the database
 router.post('/', (req, res) => {
   let project = req.body;
   console.log('POST project', project);
-
   let sqlText = `INSERT INTO "projects" ("name", "description", "website", "github", "date_completed", "tag_id")
     VALUES ($1, $2, $3, $4, $5, $6);`;
   pool.query(sqlText, [project.name, project.description, project.website, project.github, project.date_completed, project.tag_id])
@@ -19,6 +19,7 @@ router.post('/', (req, res) => {
     })
 })
 
+//GET request that recieves project info from the database to be used in ProjectList and AdminTable
 router.get('/', (req, res) => {
   console.log('Getting all projects');
   pool.query(`SELECT "projects"."id" AS "project_id", "projects"."name" AS "project_name", "projects"."description", "projects"."thumbnail", "projects"."website", "projects"."github", "projects"."date_completed", "tags"."name" FROM "projects" 
@@ -32,6 +33,7 @@ router.get('/', (req, res) => {
     })
 })
 
+//POST request that sends tag names to "tags" table in the database
 router.post('/tags', (req, res) => {
   let tag = req.body;
   console.log('POST tag', tag);
@@ -49,6 +51,7 @@ router.post('/tags', (req, res) => {
     })
 })
 
+//GET request that recieves tags from the database to be used in the AdminTable dropdown selector
 router.get('/tags', (req, res) => {
   console.log('Getting all projects');
   pool.query(`SELECT * FROM "tags"`)
@@ -60,6 +63,7 @@ router.get('/tags', (req, res) => {
     })
 })
 
+//Delete request that removes specified pojects based on ID from the database
 router.delete('/:id', (req, res) => {
   console.log('Deleteing project');
   let projectId = req.params.id;
@@ -71,17 +75,5 @@ router.delete('/:id', (req, res) => {
       res.sendStatus(500);
     })
 })
-
-// router.put('/:id', (req, res) => {
-//     console.log('Flagging Feedback');
-//     let feedbackId = req.params.id;
-//     let sqlText = 'UPDATE "feedback" SET "flagged" = NOT "flagged" WHERE "id" = $1'
-//     pool.query(sqlText, [feedbackId])
-//     .then((results) => {
-//         res.sendStatus(201);
-//     }).catch((error) => {
-//         res.sendStatus(500);
-//     })
-// })
 
 module.exports = router;

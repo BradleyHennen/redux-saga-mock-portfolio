@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 
-
+//----Styling----
 const styles = theme => ({
     container: {
         marginTop: 50,
@@ -33,12 +33,15 @@ class AdminForm extends Component {
         name: '',
     }
 
+    //Updates state.name with input value
     handleChange = event => {
         this.setState({
             name: event.target.value,
         })
     }
 
+    //Sends state to addTag Saga to update database
+    //Clears input fields on submit
     addKey = event => {
         event.preventDefault();
         this.props.dispatch({ type: 'ADD_TAG', payload: this.state });

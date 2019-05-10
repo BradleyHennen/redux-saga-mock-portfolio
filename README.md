@@ -52,7 +52,6 @@ Steps to get the development environment running.
 ### Next Steps
 
 - [ ] Sortable project list
-- [ ] 
 
 ## Authors
 
